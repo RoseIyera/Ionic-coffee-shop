@@ -1,0 +1,21 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>
+      Previous Orders
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large"> Previous Orders</ion-title>
+    </ion-toolbar>
+  </ion-header>
+<!-- What will display in the orders tab -->
+  <ion-row>
+    <ion-card *ngFor="let getOrders of getOrders ">
+      <p>#{{getOrders.productId}}: {{myDate | date: 'dd-MM-yyyy'}} </p>
+    </ion-card> 
+  </ion-row>
+</ion-content>

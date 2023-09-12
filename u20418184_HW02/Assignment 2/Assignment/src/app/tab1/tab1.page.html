@@ -1,0 +1,49 @@
+<ion-header [translucent]="true" >
+  <ion-toolbar >
+    <ion-title>
+     Products
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true" >
+<!-- This code displays the different products in the products tab -->
+    <ion-row>
+      <ion-card class="card" style="width: 100%;" *ngFor="let get of product;let i = index " >
+         {{get.productPrice}}
+        <h1> {{get.productName}} </h1>
+      <pre></pre>
+         {{get.productDescription}}
+         <p><b>Quantity</b></p>
+         <ion-item >
+          <ion-icon name="add-circle" (click)="incrementQty(i)" item-right></ion-icon>
+          <ion-input style="float: left;" type="number"  [(ngModel)]="get.Quantity"></ion-input>
+          <div  *ngIf="submitted && get[Quantity].errors" class="invalid-feedback">
+            <div *ngIf="get[Quantity].errors?.['required']">Please enter a quantity above zero</div>
+          </div>
+          <ion-icon name="remove-circle" (click)="decrementQty(i)" item-right></ion-icon>
+        
+        </ion-item>
+        <!-- Add to basket -->
+         <ion-button type="submit" size="small" style="float: right;" (click)="addCart(get)" >
+          <ion-icon name="basket-outline"></ion-icon>
+         </ion-button>
+       
+      </ion-card>
+    </ion-row>
+ 
+</ion-content>
+<!-- Attempting validation -->
+<script>
+  function validate() {
+  var qtyVal = document.forms["qty"]["qty"].value;
+  if(qtyVal == null || qtyVal ==0) {
+  document.getElementsByClassName( "errorMessage" )[0].style.visibility = "visible";
+  document.getElementsByClassName( "errorMessage" )[0].innerHTML = "Please Fill out this field";
+  return false;
+  } else {
+  return true;
+  }
+  }
+  </script>
+
